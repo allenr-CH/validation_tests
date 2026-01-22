@@ -107,7 +107,7 @@ test_that("Test Wald method", {
 
 
 # Source: https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval
-# (Section 'Problems with using a normal approximation or "Wald interval"')
+# (Section 'Wilson score interval')
 confint_wilson <- function(n, x, clvl) {
   a <- 1 - clvl
   z_a <- qnorm(1 - a/2)
@@ -142,7 +142,7 @@ test_that("Test Wilson method", {
   expect_equal(uppI_res, uppI_exp) 
 })
 
-
+#' allenr: This still fails.   
 # Implementation according to package's Help page
 confint_prop.test <- function(n, x, clvl) {
   extract_confint <- function(nn, xx, ll) {
@@ -234,7 +234,7 @@ confint_logit <- function(n, x, clvl) {
   lowI <- numeric(length(n))
   uppI <- numeric(length(n))
   
-  # Filter non-degenerative cases (n=x or x=0, ow division by 0)
+  # Filter non-degenerative cases (n=x or x=0, otherwise division by 0)
   i <- !(n==x)&!(x==0)
   xx <- x[i]
   nn <- n[i]
@@ -386,7 +386,6 @@ test_that("Test 'probit' method", {
   expect_equal(lowI_res, lowI_exp) 
   expect_equal(uppI_res, uppI_exp) 
 })
-
 
 confint_profile <- function(n, x, clvl) {
   # Calculation for a single (nn, xx, ll) triple
