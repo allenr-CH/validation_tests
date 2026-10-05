@@ -12,3 +12,4 @@ Datasets and the generating code should be stored with the same name, with diffe
 
 Data may also be generated in the `test-function.R` or `setup-package.R` files if they are not of general interest for testing multiple packages.
 
+When a pull request is submitted, the person submitting will be prompted with a pull reuqest template.
